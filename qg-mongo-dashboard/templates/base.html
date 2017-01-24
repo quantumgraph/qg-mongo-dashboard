@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+
+<head>
+    <!-- all css lib files -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/lib/bootstrap.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/lib/bootstrap-theme.min.css') }}" />
+    
+    <!-- main css files -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sidebar.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+
+<body>
+    <div id="wrapper">
+        {% block content %} {% endblock %}
+    </div>
+
+    <!-- all js lib files -->
+    <!-- jsonformatter includes jquery -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/lib/jsonformatter.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/lib/bootstrap.min.js') }}"></script>
+
+    <!-- main js file -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

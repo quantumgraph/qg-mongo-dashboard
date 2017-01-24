@@ -1,0 +1,13 @@
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a>Mongo Dashboard</a>
+        </li>
+    {% for node_name in node_names %}
+        <li>
+            <a href="#" onclick="return mongoCurrentOp('{{node_name}}');">{{node_name}}</a>
+        </li>
+    {% endfor %}
+
+    </ul>
+</div>

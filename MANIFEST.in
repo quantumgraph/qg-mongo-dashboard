@@ -1,0 +1,4 @@
+include README.md
+include LICENSE.txt
+recursive-include qg-mongo-dashboard/templates *
+recursive-include qg-mongo-dashboard/static *
