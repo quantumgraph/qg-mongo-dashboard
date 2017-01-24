@@ -1,1 +1,16 @@
-p {color: red}
+
+/*json colors for values*/
+ul {list-style: none; margin: 0; padding-left: 30px;}
+li {list-style: none;}
+.string { color: green; }
+.number { color: darkorange; }
+.boolean { color: blue; }
+.null { color: magenta; }
+
+#mongo_ops_table tr th:nth-child(1) {width:12%}
+#mongo_ops_table tr th:nth-child(2) {width:12%}
+#mongo_ops_table tr th:nth-child(3) {width:12%}
+#mongo_ops_table tr th:nth-child(4) {width:15%}
+#mongo_ops_table tr th:nth-child(5) {width:25%}
+#mongo_ops_table tr th:nth-child(6) {width:12%}
+#mongo_ops_table tr th:nth-child(7) {width:12%}

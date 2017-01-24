@@ -3,18 +3,16 @@ from bson import json_util
 import constants
 import json
 
-print 'web started'
-
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def test():
     return render_template('index.html', node_names=constants.LIST_OF_NODES)
 
-@app.route('/get_mongo_current_op/<node_name>', methods=['GET', 'POST'])
+@app.route('/get_mongo_current_op/<node_name>/', methods=['GET'])
 def get_mongo_current_op(node_name):
-    print node_name
-    uri = constants.ALL_NODES[node_name]
+    uri = constants.ALL_NODES[node_name].get_connection_string_uri()
+    print 'uri', uri
     conn = constants.MONGO_CONN.get_connection(node_name, uri)
     db = conn['admin']
     current_ops = db.current_op()
@@ -32,15 +30,15 @@ def get_mongo_current_op(node_name):
     _dict['filtered'] = len(filtered_ops)
     _dict['data'] = filtered_ops
     json_str = json_util.dumps(_dict)
-    _dict = json.loads(json_str)
-    return render_template('index.html', node_names=constants.LIST_OF_NODES)
+    return json_str
 
-@app.route('/kill_mongo_op/<node_name>/<int:opid>', methods=['GET', 'POST'])
-def test(node_name, opid):
-    conn = constants.MONGO_CONN.get_connection(node_name)
+@app.route('/kill_mongo_op/<node_name>/<int:opid>/', methods=['POST'])
+def kill_mongo_op(node_name, opid):
+    uri = constants.ALL_NODES[node_name]
+    conn = constants.MONGO_CONN.get_connection(node_name, uri)
     db = conn['admin']
     try:
         result = db.command('killOp', op=opid)
-        return ('<p>Result: ' + str(result)) + '</p>')
+        return 'Result: ' + str(result)
     except Exception as e:
-        return ('<p>Unable to kill mongo op. Error: ' + str(e)) + '</p>')
+        return 'Unable to kill mongo op. Error: ' + str(e)

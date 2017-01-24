@@ -47,3 +47,4 @@ class NodeConfig(object):
         if self.username and self.password:
             string_uri += '{0}:{1}@'.format(self.host, self.port)
         string_uri += '{0}:{1}/admin'.format(self.host, self.port)
+        return string_uri
